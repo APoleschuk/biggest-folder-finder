@@ -15,6 +15,11 @@ public class Node {
     children = new ArrayList<>();
   }
 
+  public void addChild(Node node) {
+    node.setLevel(level + 1);
+    children.add(node);
+  }
+
   public File getFolder() {
     return folder;
   }
@@ -23,17 +28,8 @@ public class Node {
     return sizeLimit;
   }
 
-  public void addChild(Node node) {
-    node.setLevel(level + 1);
-    children.add(node);
-  }
-
   private void setLevel(int level) {
     this.level = level;
-  }
-
-  public ArrayList<Node> getChildren() {
-    return children;
   }
 
   public long getSize() {
