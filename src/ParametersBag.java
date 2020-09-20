@@ -1,3 +1,5 @@
+import java.io.File;
+
 public class ParametersBag {
 
   private long limit = 0;
@@ -6,10 +8,14 @@ public class ParametersBag {
   public ParametersBag(String[] args) {
     setPath(args);
     setLimit(args);
-    if (getPath().equals("")) {
+    File file = new File(path);
+    if(!file.exists() || !file.isDirectory()) {
+      throw new IllegalArgumentException("Такого файла или папки не существует");
+    }
+    else if (getPath().equals("")) {
       throw new IllegalArgumentException("Не указан путь к папке, задается через параметр -d");
     }
-    if (getLimit() == 0) {
+    else if (getLimit() == 0) {
       throw new IllegalArgumentException("Не задан лимит, задается через параметр -l");
     }
   }
